@@ -53,4 +53,5 @@ docs/_build/
 # PyBuilder
 target/
 
-app/test.db
+config_dev.py
+app/homemoney.db
