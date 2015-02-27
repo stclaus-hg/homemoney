@@ -1,0 +1,31 @@
+Планирование бюджета на месяц
+контроль расходов
+мультивалютность
+долги, мне, я
+кредиты
+аналитика
+графики
+различные места накоплений
+напоминания о платежах
+семьи
+
+
+flask
+postrgesql
+jinja2
+sqlalchemy
+unit-tests
+bootstrap
+
+1. users
+1.1. model
+  - email (login, unique)
+  - password (hesh)
+  - name
+1.2. Login function
+1.3. Profile
+  - edit info
+  - edit password
+1.4. sign up
+1.5. sign in
+1.6. logout
