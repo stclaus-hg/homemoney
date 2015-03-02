@@ -1,5 +1,5 @@
-from app import login_manager
-from app.users.forms import LoginForm
+from app import login_manager, bcrypt, db
+from app.users.forms import LoginForm, ProfileForm
 from app.users.models import User
 from flask import Blueprint, render_template, redirect, url_for, session, g, flash
 import config
@@ -17,8 +17,8 @@ def index():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data, password=form.password.data).first()
-        if user:
+        user = User.query.filter_by(email=form.email.data).first()
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user)
             flash('Welcome to Home Money!')
             return redirect(url_for('users.index'))
@@ -32,6 +32,22 @@ def logout():
     logout_user()
     flash('See you!')
     return redirect(url_for('users.index'))
+
+
+@mod.route('/profile/', methods=['GET', 'POST'])
+@login_required
+def profile():
+    form = ProfileForm(user=g.user, obj=g.user)
+    if form.validate_on_submit():
+        g.user.name = form.name.data
+        g.user.email = form.email.data
+        if form.password.data:
+            g.user.password = bcrypt.generate_password_hash(form.password.data)
+        db.session.add(g.user)
+        db.session.commit()
+        flash('Your profile has changed successfully.')
+        return redirect(url_for('users.profile'))
+    return render_template('profile.html', form=form, title='Me Profile')
 
 
 @login_manager.user_loader

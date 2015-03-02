@@ -1,5 +1,6 @@
 {% if g.user.is_authenticated() %}
     <a href="{{ url_for('users.logout') }}">Logout</a>
+    | <a href="{{ url_for('users.profile') }}">Profile</a>
 {% else %}
     <a href="{{ url_for('users.login') }}">Sign In</a>
 {% endif %}
