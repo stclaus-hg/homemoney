@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div>
+        <a href="{{ url_for('expenditure.items') }}">Items</a> |
+        <a href="{{ url_for('expenditure.groups') }}">Groups</a> |
+        <a href="#">Plan</a>
+    </div>
+{% endblock %}

@@ -1,11 +1,15 @@
 from app import db
 
+#from app.expenditure.models import ExpenditureItem
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
     email = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(100))
+
+    expenditure_items = db.relationship('ExpenditureItem', backref=db.backref('user1', lazy='joined'), lazy='dynamic')
 
     def __init__(self, name, email, password):
         self.name = name

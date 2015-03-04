@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div>
+        <a href="{{ url_for('expenditure.index') }}">Expenditure</a> >>
+        Items
+    </div>
+    <hr>
+    <table border="1">
+        <tr>
+            <th width="200px">Title</th>
+            <th width="70px">Edit</th>
+            <th width="70px">Remove</th>
+        </tr>
+        {% for item in items %}
+            <tr>
+                <td>
+                    {{ item.title }}
+                </td>
+                <td>
+                    <a href="{{ url_for('expenditure.item_edit', item_id=item.id) }}">Edit</a>
+                </td>
+                <td>
+                    <a href="{{ url_for('expenditure.item_remove', item_id=item.id) }}">Remove</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('expenditure.item_add') }}">Add Item</a>
+{% endblock %}

@@ -13,6 +13,7 @@
       <list>
         <option value="$MODULE_DIR$/app/users/templates" />
         <option value="$MODULE_DIR$/app/templates" />
+        <option value="$MODULE_DIR$/app/expenditure/templates" />
       </list>
     </option>
   </component>
